@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Ham Radio: Modern Modes and Technologies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .poster {
+            width: 36in;
+            height: 48in;
+            max-width: 100vw;
+            max-height: 100vh;
+            background: white;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto auto 1fr 1fr 1fr auto;
+            gap: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            grid-column: 1 / -1;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.8em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .section {
+            background: linear-gradient(145deg, #f8f9ff, #e8ecff);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-2px);
+        }
+        
+        .section h2 {
+            color: #4a5568;
+            font-size: 1.8em;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 8px;
+        }
+        
+        .section h3 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin: 15px 0 8px 0;
+        }
+        
+        .section p, .section li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        
+        .section ul {
+            padding-left: 20px;
+        }
+        
+        .digital-modes {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 20px;
+            background: none;
+            padding: 0;
+            box-shadow: none;
+            border: none;
+        }
+        
+        .mode-card {
+            background: linear-gradient(145deg, #f0f4ff, #e0e8ff);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-top: 4px solid;
+            transition: transform 0.3s ease;
+        }
+        
+        .mode-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .c4fm { border-top-color: #e53e3e; }
+        .dmr { border-top-color: #3182ce; }
+        .dstar { border-top-color: #38a169; }
+        .m17 { border-top-color: #d69e2e; }
+        
+        .mode-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+        
+        .mode-card .frequency {
+            background: #4299e1;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 10px 0;
+            display: inline-block;
+        }
+        
+        .specs {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 0.95em;
+        }
+        
+        .hotspots-section {
+            background: linear-gradient(145deg, #fff5f5, #fed7d7);
+            border-left-color: #e53e3e;
+        }
+        
+        .software-section {
+            background: linear-gradient(145deg, #f0fff4, #c6f6d5);
+            border-left-color: #38a169;
+        }
+        
+        .footer {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #2d3748, #4a5568);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .footer h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .tech-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        
+        .tech-specs div {
+            background: rgba(255,255,255,0.7);
+            padding: 8px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        @media (max-width: 1200px) {
+            .poster {
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            
+            .digital-modes {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .digital-modes {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .header .subtitle {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <!-- Header -->
+        <div class="header">
+            <h1>Digital Ham Radio</h1>
+            <div class="subtitle">Modern Digital Modes and Technologies</div>
+        </div>
+        
+        <!-- Digital Modes Section -->
+        <div class="digital-modes">
+            <div class="mode-card c4fm">
+                <h3>C4FM</h3>
+                <div class="frequency">Yaesu System Fusion</div>
+                <div class="specs">
+                    <strong>Modulation:</strong> 4-level FSK<br>
+                    <strong>Data Rate:</strong> 9600 bps<br>
+                    <strong>Audio:</strong> AMBE+2 vocoder<br>
+                    <strong>Features:</strong> DN mode, VW mode
+                </div>
+                <p>Yaesu's proprietary digital mode featuring seamless analog/digital operation and Wires-X internet linking.</p>
+            </div>
+            
+            <div class="mode-card dmr">
+                <h3>DMR</h3>
+                <div class="frequency">Digital Mobile Radio</div>
+                <div class="specs">
+                    <strong>Standard:</strong> ETSI TS 102 361<br>
+                    <strong>TDMA:</strong> 2 time slots<br>
+                    <strong>Audio:</strong> AMBE+2 vocoder<br>
+                    <strong>Networks:</strong> Brandmeister, TGIF
+                </div>
+                <p>Open standard digital protocol with talk groups, private calls, and extensive network infrastructure.</p>
+            </div>
+            
+            <div class="mode-card dstar">
+                <h3>D-STAR</h3>
+                <div class="frequency">Digital Smart Tech</div>
+                <div class="specs">
+                    <strong>Developer:</strong> JARL/Icom<br>
+                    <strong>Data Rate:</strong> 4800 bps voice<br>
+                    <strong>Audio:</strong> AMBE vocoder<br>
+                    <strong>Features:</strong> GPS, slow data
+                </div>
+                <p>First major digital ham mode with call sign routing and internet gateway (REF/XRF/DCS) connections.</p>
+            </div>
+            
+            <div class="mode-card m17">
+                <h3>M17</h3>
+                <div class="frequency">Open Source Digital</div>
+                <div class="specs">
+                    <strong>Status:</strong> Fully open source<br>
+                    <strong>Audio:</strong> Codec 2<br>
+                    <strong>Encryption:</strong> AES-256<br>
+                    <strong>Data:</strong> Packet radio ready
+                </div>
+                <p>Revolutionary open-source digital protocol designed by hams, for hams, with no patent restrictions.</p>
+            </div>
+        </div>
+        
+        <!-- Hotspots Section -->
+        <div class="section hotspots-section">
+            <h2>Digital Hotspots</h2>
+            <h3>What are Hotspots?</h3>
+            <p>Personal low-power RF bridges that connect handheld radios to digital networks via internet. Enable digital mode access without repeater infrastructure.</p>
+            
+            <h3>Popular Hardware:</h3>
+            <ul>
+                <li><span class="highlight">Pi-Star Hotspot</span> - Raspberry Pi based, multi-mode</li>
+                <li><span class="highlight">OpenSpot</span> - Standalone commercial unit</li>
+                <li><span class="highlight">DV4mini</span> - USB dongle style</li>
+                <li><span class="highlight">MMDVM</span> - Multi-Mode Digital Voice Modem</li>
+            </ul>
+            
+            <h3>Key Benefits:</h3>
+            <ul>
+                <li>Portable digital access anywhere with internet</li>
+                <li>Multiple mode support (DMR, D-STAR, C4FM, M17)</li>
+                <li>Low power consumption (typically 5-10 watts)</li>
+                <li>Easy setup and configuration</li>
+            </ul>
+        </div>
+        
+        <!-- OpenSpot 4 PRO Section -->
+        <div class="section">
+            <h2>OpenSpot 4 PRO</h2>
+            <p>Latest generation standalone digital hotspot from SharkRF, representing the pinnacle of hotspot technology.</p>
+            
+            <h3>Advanced Features:</h3>
+            <ul>
+                <li><span class="highlight">All Digital Modes:</span> DMR, D-STAR, C4FM, M17, NXDN, P25</li>
+                <li><span class="highlight">Dual Connectivity:</span> WiFi and Ethernet</li>
+                <li><span class="highlight">Cross-Mode:</span> Connect different digital modes</li>
+                <li><span class="highlight">Auto-Calibration:</span> Automatic frequency and power calibration</li>
+            </ul>
+            
+            <div class="tech-specs">
+                <div><strong>Power:</strong> 10mW - 100mW</div>
+                <div><strong>Frequency:</strong> 70cm, 2m versions</div>
+                <div><strong>Connectivity:</strong> WiFi 6, Gigabit Ethernet</div>
+                <div><strong>Display:</strong> Color OLED</div>
+            </div>
+            
+            <p>Professional-grade construction with metal housing, making it ideal for permanent installations and portable operation.</p>
+        </div>
+        
+        <!-- WPSD Section -->
+        <div class="section software-section">
+            <h2>WPSD (W0CHP-PiStar-Dash)</h2>
+            <p>Enhanced Pi-Star distribution with advanced features and improved user interface for digital hotspots.</p>
+            
+            <h3>Key Improvements:</h3>
+            <ul>
+                <li><span class="highlight">Enhanced Dashboard:</span> Modern, responsive web interface</li>
+                <li><span class="highlight">Advanced Networking:</span> Improved network stack and connectivity</li>
+                <li><span class="highlight">Better Performance:</span> Optimized for Raspberry Pi 4</li>
+                <li><span class="highlight">Extended Support:</span> Additional hardware compatibility</li>
+            </ul>
+            
+            <h3>Features:</h3>
+            <ul>
+                <li>Real-time system monitoring and statistics</li>
+                <li>Advanced configuration options</li>
+                <li>Multiple network support (DMR+, BrandMeister, etc.)</li>
+                <li>Automatic updates and maintenance tools</li>
+                <li>Enhanced logging and diagnostic capabilities</li>
+            </ul>
+        </div>
+        
+        <!-- EchoLink Section -->
+        <div class="section">
+            <h2>EchoLink</h2>
+            <p>Internet-based system connecting amateur radio operators worldwide through VoIP technology, predating modern digital modes.</p>
+            
+            <h3>How EchoLink Works:</h3>
+            <ul>
+                <li><span class="highlight">Node System:</span> Repeaters and simplex stations become internet nodes</li>
+                <li><span class="highlight">Validation:</span> FCC license validation required</li>
+                <li><span class="highlight">Global Access:</span> Connect to stations worldwide</li>
+                <li><span class="highlight">Conferences:</span> Multi-user conference rooms</li>
+            </ul>
+            
+            <h3>Access Methods:</h3>
+            <ul>
+                <li>RF through EchoLink-enabled repeaters</li>
+                <li>PC/smartphone apps (when away from radio)</li>
+                <li>DTMF commands for node connection</li>
+                <li>Web-based directory and control</li>
+            </ul>
+            
+            <div class="tech-specs">
+                <div><strong>Audio:</strong> 8 kHz sampling</div>
+                <div><strong>Protocol:</strong> Internet/VoIP</div>
+                <div><strong>Nodes:</strong> 200,000+ worldwide</div>
+                <div><strong>Platform:</strong> Cross-platform apps</div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <h3>The Future of Digital Ham Radio</h3>
+            <p>Digital modes continue evolving with open-source initiatives like M17 leading innovation. Modern hotspots and software like WPSD make digital accessible to all hams. Integration with internet infrastructure expands our global reach while maintaining the experimental spirit of amateur radio.</p>
+        </div>
+    </div>
+</body>
+</html>
